@@ -119,6 +119,8 @@ function GetFilesTree($ftp, $user, $pass){
     while($folders.Count -gt 0){
         $fld = $folders.Dequeue()
         
+        #Write-Output ("Crawling " + $fld)
+
         $newFiles = GetAllFiles $creds $fld
         $dirs = GetDirectories $creds $fld
         
@@ -176,4 +178,4 @@ function GetStream($creds, $url, $meth){
     return New-Object IO.StreamReader $response.GetResponseStream()
 }
 
-Export-ModuleMember UploadToFtp, DownLoadFromFtp
+Export-ModuleMember UploadToFtp, DownLoadFromFtp, GetFilesTree
